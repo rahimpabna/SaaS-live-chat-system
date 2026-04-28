@@ -1,0 +1,205 @@
+You are my senior full-stack DevOps engineer. Build and deploy a production-ready custom AI live chat/helpdesk system like Intercom, but using mostly free/open-source stack.
+
+Goal:
+Create a SaaS-style live chat system with:
+1. Main Admin Panel
+2. Agent Panel
+3. Website Chat Widget
+4. Real-time chat
+5. AI automation
+6. Visitor tracking: current page URL, referrer, IP, country/city, device, browser, OS, user journey logs
+7. Queue/routing rules
+8. In-page tab chat window for agents like Facebook Messenger
+9. Full deployment on Ubuntu VPS
+
+Tech Stack:
+- Next.js latest stable with TypeScript
+- MongoDB database
+- Pusher.js for real-time messaging, use free tier
+- Tailwind CSS + shadcn/ui
+- Auth.js or secure JWT auth
+- Node.js runtime
+- Nginx reverse proxy
+- PM2 process manager
+- SSL with Certbot/Let’s Encrypt
+- Optional Redis later, but start without paid services
+- AI provider should be configurable. Add OpenAI-compatible API support, but keep fallback rule-based bot if no API key.
+
+Server:
+- Ubuntu 22.04 or 24.04
+- OVH VPS France
+- Prepare install script from fresh server to production deploy.
+
+Core Modules:
+
+Admin Panel:
+- Login
+- Dashboard: total chats, active visitors, online agents, waiting queue, resolved chats
+- Manage agents: create/edit/delete, role, online/offline, department
+- Manage teams/departments
+- Routing rules:
+  - assign by department
+  - round-robin
+  - least active chats
+  - fallback to queue
+- Business hours
+- Canned replies
+- Tags
+- Conversation status: open, pending, resolved, spam
+- Visitor profiles
+- Chat history search
+- AI bot settings
+- Widget settings:
+  - brand name
+  - logo
+  - color
+  - welcome message
+  - allowed domains
+  - offline message
+- Security logs
+- Basic analytics
+
+Agent Panel:
+- Agent login
+- Messenger-style layout
+- Left sidebar: assigned chats, queue, resolved
+- Every new chat opens as an in-page tab
+- Multiple chat tabs
+- Real-time typing indicator
+- Seen/delivered status
+- Transfer chat to another agent
+- Internal notes
+- Tags
+- Visitor info panel:
+  - name/email/phone if collected
+  - current URL
+  - previous pages
+  - IP
+  - country/city
+  - device/browser/OS
+  - referrer
+  - session duration
+- Canned reply shortcut
+- AI suggested reply button
+- Resolve chat button
+
+Website Widget:
+- Embeddable JS script:
+  <script src="https://mydomain.com/widget.js" data-site-id="SITE_ID"></script>
+- Floating chat button
+- Guest visitor session
+- Ask for name/email/phone optionally
+- Send/receive messages real-time
+- Typing indicator
+- File upload optional, but keep disabled by default
+- Track:
+  - page URL
+  - title
+  - referrer
+  - UTM params
+  - browser/device
+  - page navigation events
+- Respect privacy:
+  - Do not collect passwords/card fields
+  - Do not capture form input values
+  - Add privacy notice option
+
+AI Automation:
+- Auto greeting
+- FAQ bot from admin knowledge base
+- AI draft reply for agent
+- Auto-tag conversation based on message
+- Human handoff when AI confidence low
+- Admin can enable/disable AI
+
+Database Collections:
+- users
+- agents
+- visitors
+- conversations
+- messages
+- departments
+- routing_rules
+- canned_replies
+- tags
+- widget_settings
+- knowledge_base
+- audit_logs
+- analytics_events
+
+Security:
+- Password hashing with bcrypt/argon2
+- Role-based access: super_admin, admin, supervisor, agent
+- Rate limit API
+- CORS allowed domains for widget
+- Sanitize all inputs
+- XSS protection
+- Secure cookies
+- Environment variables
+- Audit log for admin actions
+- No sensitive field tracking
+
+Deployment Requirements:
+Create complete project structure and all files.
+Create .env.example.
+Create install.sh that:
+1. updates Ubuntu
+2. installs Node.js LTS
+3. installs MongoDB or configures MongoDB connection
+4. installs Nginx
+5. installs PM2
+6. builds Next.js app
+7. starts app with PM2
+8. configures Nginx reverse proxy
+9. installs SSL with Certbot
+10. prints final admin URL
+
+Also create:
+- README.md
+- DEPLOYMENT.md
+- API documentation
+- Seed script to create first super admin
+- Backup script for MongoDB
+- Update script for redeploy
+- PM2 ecosystem config
+- Nginx config template
+
+UI Style:
+Clean premium SaaS style like Intercom/Zendesk.
+Responsive design.
+Admin and agent panels must be simple and fast.
+
+Important:
+
+If you think there are more things that can be added, it would be better if you added more things, you can do them, and you should make sure that the design is very beautiful and that our support system is very smart and very friendly. Also, if there is anything new that needs to be added, if there is anything else that you think would be better, you can do them.
+
+Build MVP first but keep architecture scalable.
+Use free/open-source options where possible.
+Do not use paid-only services except optional Pusher free tier and optional AI API.
+You Install step-by-step commands for OVH Ubuntu VPS deployment.
+After coding, explain exactly:
+- which AI added
+- how to create admin account
+- how to embed widget on website
+- how to add agents
+- how to test real-time chat
+
+=====================
+pusher
+App keys
+app_id = "2147359"
+key = "121386afc372ef29c620"
+secret = "97522c7bcc77866824ed"
+cluster = "ap2"
+========================
+VPS has been installed with the Ubuntu 22.04 operating system.
+Access details:
+VPS name: vps-80fa5f84.vps.ovh.net
+IPv4 address: 91.134.140.50
+IPv6 address: 2001:41d0:305:2100::1:167
+Username: ubuntu
+Password: Z7gZASZZBRqt
+
+ssh ubuntu@91.134.140.50
+Password: Z7gZASZZBRqt
+=========================
